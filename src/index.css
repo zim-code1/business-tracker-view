@@ -1,0 +1,656 @@
+/* ==============================
+   1. BASE & LAYOUT
+   ============================== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #eef2f5;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* HEADER */
+.app-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.app-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.sub-header {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  font-weight: 500;
+  margin-top: 5px;
+}
+
+/* MAIN GRID (Desktop View) */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr; /* Left panel slightly wider */
+  gap: 25px;
+  align-items: start; /* Prevents stretching */
+}
+
+/* ==============================
+   2. LEFT PANEL (CONTROLS)
+   ============================== */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* STATS CARDS */
+.stats-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 10px;
+}
+.stat-card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+/* Net Profit Highlight */
+.main-stat {
+  background: white;
+  border: 2px solid #007aff;
+  position: relative;
+  overflow: hidden;
+}
+/* Optional: Add a small label tag */
+.main-stat::after {
+  content: "LIVE";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 8px;
+  background: #007aff;
+  color: white;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.stat-label { font-size: 0.7rem; color: #95a5a6; text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+.stat-value { font-size: 1.3rem; font-weight: 800; }
+
+/* FORMS */
+.forms-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-section {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+.form-section h2 { margin: 0 0 15px 0; font-size: 0.95rem; color: #34495e; border-bottom: 1px solid #eee; padding-bottom: 8px;}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; 
+}
+
+.split-forms {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* INPUTS & BUTTONS */
+.input-row-3 { display: flex; gap: 10px; }
+.input-name { flex: 2; }
+.input-price { flex: 1; }
+.input-qty { flex: 1; }
+
+input, select {
+  width: 100%;
+  height: 45px; /* Taller for touch targets */
+  padding: 0 12px;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  font-size: 15px;
+  background: #fcfcfc;
+  box-sizing: border-box;
+  transition: border 0.2s;
+}
+input:focus, select:focus { border-color: #3498db; outline: none; background: white; }
+
+button {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 0;
+}
+
+.btn-sale { background: #3498db; color: white; box-shadow: 0 4px 0 #2980b9; }
+.btn-sale:active { transform: translateY(2px); box-shadow: 0 2px 0 #2980b9; }
+
+.btn-expense { background: #e74c3c; color: white; box-shadow: 0 4px 0 #c0392b; }
+.btn-expense:active { transform: translateY(2px); box-shadow: 0 2px 0 #c0392b; }
+
+.btn-payment { background: #27ae60; color: white; box-shadow: 0 4px 0 #219150; }
+.btn-payment:active { transform: translateY(2px); box-shadow: 0 2px 0 #219150; }
+
+.btn-analysis { background: #95a5a6; color: white; }
+
+/* ==============================
+   3. ANALYSIS SECTION
+   ============================== */
+.analysis-section {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.analysis-section h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.category-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.cat-header {
+  background: #f8f9fa;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #333;
+}
+.cat-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  
+  /* 1. LIMIT HEIGHT */
+  max-height: 220px; /* Shows about 5 items, then scrolls */
+  
+  /* 2. ENABLE SCROLLING */
+  overflow-y: auto; 
+  overflow-x: hidden;
+}
+
+/* 3. CUSTOM SCROLLBAR (Make it look professional) */
+.cat-list::-webkit-scrollbar {
+  width: 6px; /* Thin scrollbar */
+}
+
+.cat-list::-webkit-scrollbar-track {
+  background: #f8f9fa; /* Track color matches header */
+}
+
+.cat-list::-webkit-scrollbar-thumb {
+  background-color: #bdc3c7; /* Grey thumb */
+  border-radius: 3px; /* Rounded corners */
+}
+
+.cat-list::-webkit-scrollbar-thumb:hover {
+  background-color: #95a5a6; /* Darker on hover */
+}
+
+.cat-list li {
+  padding: 10px 12px; /* Slightly more breathing room */
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #333;
+}
+
+/* Optional: Zebra striping for better readability */
+.cat-list li:nth-child(even) {
+  background-color: #fafafa;
+}
+.cat-list li {
+  padding: 8px 10px;
+  border-bottom: 1px solid #f1f1f1;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* ==============================
+   4. RIGHT PANEL (TERMINAL)
+   ============================== */
+.right-panel {
+  background: #1e1e1e;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  height: 600px; /* Fixed height on desktop */
+  position: sticky;
+  top: 20px; /* Sticks to top when scrolling */
+}
+
+.terminal-header {
+  background: #2d2d2d;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+}
+.terminal-dot { height: 12px; width: 12px; border-radius: 50%; margin-right: 8px; display: inline-block; }
+.red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+
+.terminal-title { 
+  margin-left: 10px; 
+  color: #888; 
+  font-family: monospace; 
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.terminal-window {
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-y: auto;
+  flex: 1;
+}
+.terminal-line {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* Core styles for line */
+  position: relative; 
+  transition: background 0.2s ease;
+  border-radius: 4px;
+}
+.terminal-line:hover {
+  background: #2d2d2d;
+}
+
+.term-time { color: #666; font-size: 0.75rem; min-width: 60px; }
+.term-cmd { font-weight: bold; padding: 2px 6px; border-radius: 3px; font-size: 0.7rem; }
+.term-detail { color: #ddd; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.term-val { font-weight: bold; min-width: 70px; text-align: right; }
+
+/* Colors */
+.sale { background: #3498db; color: white; }
+.exp { background: #e74c3c; color: white; }
+.pay { background: #27ae60; color: white; }
+.positive { color: #2ecc71; }
+.negative { color: #e74c3c; }
+.system { color: #555; font-style: italic; }
+
+/* ==============================
+   5. MOBILE RESPONSIVENESS (CLEANED)
+   ============================== */
+@media (max-width: 768px) {
+  
+  /* 1. STOP SIDE-BY-SIDE MOVEMENT */
+  body, #root, .app-container {
+    overflow-x: hidden; 
+    padding: 10px 5px;
+  }
+
+  .main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .stats-row { gap: 8px; }
+  .stat-value { font-size: 1.1rem; }
+  .split-forms { grid-template-columns: 1fr; }
+  .left-panel { order: 1; }
+  
+  /* 2. FIX TERMINAL LAYOUT */
+  .right-panel {
+    order: 2;
+    height: 400px; 
+    position: static; 
+    width: 100%;
+    margin-top: 10px; 
+  }
+  
+  .terminal-window {
+    overflow-x: hidden;
+  }
+  
+  .terminal-line {
+    flex-wrap: wrap;
+    height: auto;
+    padding-right: 80px; /* Leave space for buttons */
+  }
+
+  .term-detail {
+    white-space: normal; /* Wrap text */
+    word-break: break-word;
+    font-size: 0.8rem;
+    max-width: 100%;
+  }
+  
+  .term-time {
+    display: none; /* Hide time on mobile to save space */
+  }
+
+  /* 3. FIX BUTTONS (FORCE VISIBLE) */
+  /* This is the part you need to make sure buttons work! */
+  .term-actions {
+    display: flex !important; /* Always show */
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #2d2d2d; /* Dark background makes them clickable */
+    padding: 5px;
+    border-radius: 6px;
+    box-shadow: -5px 0 10px rgba(0,0,0,0.2);
+    z-index: 999; /* Force on top */
+  }
+
+  .action-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+    background: rgba(255,255,255,0.1);
+    margin-left: 5px;
+  }
+  
+  .category-grid { grid-template-columns: 1fr; }
+}
+
+/* ==============================
+   6. ACTIONS & SEARCH
+   ============================== */
+
+/* ACTION TOOLBAR CONTAINER (Desktop Default) */
+.term-actions {
+  display: none; /* Hidden by default on Desktop */
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  gap: 8px;
+  background: #2d2d2d;
+  padding-left: 10px;
+  box-shadow: -10px 0 10px -5px rgba(30, 30, 30, 0.8); 
+}
+
+/* Show toolbar on hover (Desktop) */
+.terminal-line:hover .term-actions {
+  display: flex;
+}
+
+/* BUTTON STYLES */
+.action-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.action-btn.edit { color: #f39c12; border-color: rgba(243, 156, 18, 0.3); }
+.action-btn.edit:hover { background: #f39c12; color: white; transform: scale(1.05); }
+
+.action-btn.del { color: #e74c3c; border-color: rgba(231, 76, 60, 0.3); }
+.action-btn.del:hover { background: #e74c3c; color: white; transform: scale(1.05); }
+
+.highlight-edit {
+  background: #2a3b4c !important;
+  border-left: 3px solid #3498db;
+  padding-left: 7px;
+}
+
+.editing-banner {
+  background: #2c3e50;
+  color: #ecf0f1;
+  padding: 12px 15px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 15px;
+  border: 1px solid #34495e;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-cancel {
+  background: transparent;
+  color: #bdc3c7;
+  padding: 4px 12px;
+  height: auto;
+  font-size: 0.7rem;
+  border: 1px solid #7f8c8d;
+  border-radius: 4px;
+}
+.btn-cancel:hover { background: #e74c3c; border-color: #e74c3c; color: white; }
+
+.disabled { opacity: 0.4; pointer-events: none; filter: grayscale(100%); }
+
+/* ==============================
+   7. EXTRAS (Login, Spinner, Search)
+   ============================== */
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eef2f5;
+}
+
+.login-box {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 100%;
+  max-width: 350px;
+}
+
+.login-box h1 { margin-top: 0; color: #2c3e50; }
+.login-box p { color: #7f8c8d; margin-bottom: 20px; }
+
+.loading-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #eef2f5;
+  color: #7f8c8d;
+  font-weight: 500;
+  gap: 15px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 122, 255, 0.1);
+  border-left-color: #007aff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* FIXED SEARCH BAR COLORS */
+.terminal-search {
+  margin-left: auto;
+  width: 140px;
+  height: 28px;
+  padding: 0 10px;
+  font-size: 12px;
+  background-color: #1e1e1e !important; 
+  color: white !important;
+  border: 1px solid #444;
+  border-radius: 4px;
+  outline: none;
+}
+
+.terminal-search:focus {
+  border-color: #007aff;
+  background-color: #1e1e1e !important;
+  color: white !important;
+}
+.terminal-search::placeholder { color: #888; }
+
+.btn-export {
+  margin-top: 10px;
+  background: #2c3e50;
+  color: #bdc3c7;
+  font-size: 0.8rem;
+  border: 1px solid #34495e;
+}
+.btn-export:hover { background: #34495e; color: white; }
+
+/* ... (Your existing CSS) ... */
+
+/* ==============================
+   8. CONFIRMATION MODAL
+   ============================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6); /* Dark backdrop */
+  z-index: 2000; /* Sit on top of EVERYTHING */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px); /* Nice blur effect */
+}
+
+.modal-box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+  animation: popIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-confirm {
+  background: #e74c3c;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+}
+
+.btn-close {
+  background: #ecf0f1;
+  color: #7f8c8d;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #bdc3c7;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+}
+
+/* ==============================
+   9. GRAPH FILTER BUTTONS
+   ============================== */
+.graph-btn {
+  padding: 6px 12px;
+  margin-left: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: white;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.graph-btn:hover {
+  background-color: #f9f9f9;
+  border-color: #ccc;
+}
+
+/* Active State (When clicked) */
+.graph-btn.active {
+  color: white;
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
