@@ -654,3 +654,22 @@ button {
   transform: translateY(-1px);
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+.demo-box {
+  background-color: #e3f2fd; /* Light Blue */
+  border: 1px solid #90caf9;
+  color: #1565c0;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.demo-box code {
+  background: rgba(255,255,255,0.7);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-family: monospace;
+}

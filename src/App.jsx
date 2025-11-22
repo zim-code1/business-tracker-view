@@ -449,16 +449,41 @@ function App() {
 
   if (loading) return <div className="loading-screen"><div className="spinner"></div><span>Loading...</span></div>;
 
+  // --- LOGIN SCREEN RENDER ---
   if (!session) {
     return (
       <div className="login-container">
         <div className="login-box">
-          <h1>Sales Tracker</h1>
-          <p>Sign in To see my work!</p>
+          <h1>Business Tracker</h1>
+          <p>Portfolio Demo Version</p>
+          
+          {/* NEW: Demo Credentials Box */}
+          <div className="demo-box">
+            <small><strong>👨‍💻 Recruiter / Visitor Access:</strong></small>
+            <div style={{marginTop: '5px'}}>
+              <span>Email: <code>publicuser@email.com</code></span><br/>
+              <span>Pass: <code>12345</code></span>
+            </div>
+          </div>
+
           <form onSubmit={handleLogin}>
-            <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            <button type="submit" className="btn-sale" disabled={loading}>{loading ? 'Signing In...' : 'SIGN IN'}</button>
+            <input 
+              type="email" 
+              placeholder="Email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+            />
+            <input 
+              type="password" 
+              placeholder="Password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+            />
+            <button type="submit" className="btn-sale" disabled={loading}>
+              {loading ? 'Signing In...' : 'LOGIN TO DEMO'}
+            </button>
           </form>
         </div>
       </div>
