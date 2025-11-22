@@ -453,8 +453,8 @@ function App() {
     return (
       <div className="login-container">
         <div className="login-box">
-          <h1>Business Tracker</h1>
-          <p>Please sign in to continue</p>
+          <h1>Sales Tracker</h1>
+          <p>Sign in To see my work!</p>
           <form onSubmit={handleLogin}>
             <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
